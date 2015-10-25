@@ -572,7 +572,7 @@
        panel_ratio="100"
        panel_mode="1"
        panel_wrap="0"
-       page="34"
+       page="38"
        x="0"
        y="0"
        w="1358"
@@ -718,7 +718,7 @@
        uri="" />
     <group
        id="savewindowgeometry"
-       value="1" />
+       value="2" />
     <group
        id="defaultoffsetwidth"
        value="2" />
