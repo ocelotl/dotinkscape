@@ -22,7 +22,7 @@ from git import Repo
 repo = Repo(getcwd())
 
 active_branch = repo.active_branch.name
-diff_index = repo.commit("main").diff(repo.active_branch.name)
+diff_index = repo.commit("master").diff(repo.active_branch.name)
 
 symbol = r"[a-zA-Z][_\w]+"
 
