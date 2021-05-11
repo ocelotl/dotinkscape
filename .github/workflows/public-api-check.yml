@@ -18,15 +18,38 @@ jobs:
     - name: Install tox
       run: pip install -U tox-factor
     - name: Public API Check
-      run: tox -e public-symbols-check
+      run: tox -qq -e public-symbols-check > result
+    - name: Upload public symbols check result
+      uses: actions/upload-artifact@v2
+      with:
+        name: result
+        path: result
 
   commentPR:
     runs-on: ubuntu-latest
     steps:
-      - uses: mshick/add-pr-comment@v1
+      - name: Download result
+        uses: actions/download-artifact@v2
         with:
-          message: |
-            **comment**
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
+          name: result
+      - name: Store result in variable
+        run: |
+          comment=$(<result)
+      - name: Add comment
+        uses: actions/github-script@v2
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.issues.createComment({
+              issue_number: ${{ github.event.number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            })
+        # - uses: mshick/add-pr-comment@v1
+        # with:
+        #   message: |
+        #     **comment**
+        #   repo-token: ${{ secrets.GITHUB_TOKEN }}
+        #   repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+        #   allow-repeats: false # This is the default
