@@ -20,7 +20,6 @@ from re import match
 from git import Repo
 
 repo = Repo(getcwd())
-
 head_commit = repo.head.commit
 
 for branch in repo.branches:
@@ -28,7 +27,7 @@ for branch in repo.branches:
     if branch.commit == head_commit:
         active_branch = branch.name
 
-diff_index = repo.commit("master").diff(active_branch)
+diff_index = repo.commit("refs/heads/master").diff(active_branch)
 
 symbol = r"[a-zA-Z][_\w]+"
 
