@@ -48,7 +48,7 @@ jobs:
         run: |
           # echo "::set-env name=body::$(<result.txt)"
           echo "comment=$(<result)" >> GITHUB_ENV
-          comment=$(<result)
+          # comment=$(<result)
       - name: Add comment
         uses: actions/github-script@v2
         with:
