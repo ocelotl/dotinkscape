@@ -23,11 +23,6 @@ from git.db import GitDB
 repo = Repo(getcwd(), odbt=GitDB)
 head_commit = repo.head.commit
 
-for branch in repo.branches:
-
-    if branch.commit == head_commit:
-        active_branch = branch.name
-
 # diff_index = repo.commit("802ec7a5990b5157dd247b305a176c17d3277ece").diff(active_branch)
 # diff_index = repo.commit("master").diff(active_branch)
 diff_index = repo.commit("master").diff(head_commit)
@@ -83,11 +78,7 @@ get_symbols("A", a_diff_lines_getter, r"")
 get_symbols("M", m_diff_lines_getter, r"\+")
 
 if file_path_symbols:
-    print(
-        "The {} branch adds the following public symbols:".format(
-            active_branch
-        )
-    )
+    print("This pull request adds the following public symbols:")
     print()
     for file_path, symbols in file_path_symbols.items():
         print("- {}".format(file_path))
@@ -101,6 +92,4 @@ if file_path_symbols:
         "private."
     )
 else:
-    print(
-        "The {} branch does not add any public symbols".format(active_branch)
-    )
+    print("This pull request does not add any public symbols")
