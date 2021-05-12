@@ -37,6 +37,7 @@ jobs:
         path: result
 
   commentPR:
+    needs: [publicAPICheck]
     runs-on: ubuntu-latest
     steps:
       - name: Download result
