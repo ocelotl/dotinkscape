@@ -18,8 +18,9 @@ from pathlib import Path
 from re import match
 
 from git import Repo
+from git.db import GitDB
 
-repo = Repo(getcwd())
+repo = Repo(getcwd(), odbt=GitDB)
 head_commit = repo.head.commit
 
 for branch in repo.branches:
