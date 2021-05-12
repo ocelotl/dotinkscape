@@ -28,8 +28,8 @@ jobs:
     - name: Install tox
       run: pip install -U tox-factor
     - name: Public API Check
-      # run: tox -qq -e public-symbols-check > result
-      run: tox -qq -e public-symbols-check
+      run: tox -qq -e public-symbols-check > result
+      # run: tox -qq -e public-symbols-check
     - name: Upload public symbols check result
       uses: actions/upload-artifact@v2
       with:
