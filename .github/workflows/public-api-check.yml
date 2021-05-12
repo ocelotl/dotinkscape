@@ -12,6 +12,8 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Try this
+      run: git checkout master
+    - name: Try this
       run: git config pull.rebase false
     - name: Pull origin
       run: git pull origin master
