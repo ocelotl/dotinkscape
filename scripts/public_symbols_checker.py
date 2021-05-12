@@ -28,7 +28,8 @@ for branch in repo.branches:
     if branch.commit == head_commit:
         active_branch = branch.name
 
-diff_index = repo.commit("802ec7a5990b5157dd247b305a176c17d3277ece").diff(active_branch)
+# diff_index = repo.commit("802ec7a5990b5157dd247b305a176c17d3277ece").diff(active_branch)
+diff_index = repo.commit("master").diff(active_branch)
 
 symbol = r"[a-zA-Z][_\w]+"
 
