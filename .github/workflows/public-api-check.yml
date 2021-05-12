@@ -47,7 +47,7 @@ jobs:
       - name: Store result in variable
         run: |
           # echo "::set-env name=body::$(<result.txt)"
-          echo "comment=$(<result)" >> GITHUB_ENV
+          echo "comment=$(<result)" >> $GITHUB_ENV
           # comment=$(<result)
       - name: Add comment
         uses: actions/github-script@v2
