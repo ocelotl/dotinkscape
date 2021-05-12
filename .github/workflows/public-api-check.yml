@@ -46,7 +46,8 @@ jobs:
           name: result
       - name: Store result in variable
         run: |
-          echo "::set-env name=body::$(<result.txt)"
+          # echo "::set-env name=body::$(<result.txt)"
+          echo "comment=$(<result)" >> GITHUB_ENV
           comment=$(<result)
       - name: Add comment
         uses: actions/github-script@v2
@@ -57,7 +58,7 @@ jobs:
               issue_number: ${{ github.event.number }},
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '${{env.comment}}'
+              body: '${{ env.comment }}'
             })
         # - uses: mshick/add-pr-comment@v1
         # with:
